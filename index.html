@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Sweden eSIM | TON Blockchain</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Background */
+
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at top left,#1e3a8a 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#06b6d4 0%,transparent 30%),
+    #050816;
+}
+
+.blur{
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#00d4ff;
+    filter:blur(180px);
+    opacity:0.15;
+    border-radius:50%;
+    z-index:-1;
+    animation:float 8s infinite ease-in-out;
+}
+
+.blur2{
+    top:50%;
+    right:-150px;
+}
+
+.blur1{
+    top:-100px;
+    left:-100px;
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(40px);}
+    100%{transform:translateY(0px);}
+}
+
+/* Header */
+
+header{
+    width:100%;
+    padding:25px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(20px);
+    background:rgba(5,8,22,0.5);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#00d4ff;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:#00d4ff;
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 10%;
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.badge{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:50px;
+    background:rgba(255,255,255,0.03);
+    margin-bottom:30px;
+    color:#00d4ff;
+    font-size:14px;
+}
+
+.hero h1{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#00d4ff,#60a5fa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:20px;
+    color:#b8c1ec;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:16px 34px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,#00d4ff,#2563eb);
+    color:white;
+    box-shadow:0 0 25px rgba(0,212,255,0.3);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,0.1);
+    color:white;
+    background:rgba(255,255,255,0.03);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,0.08);
+}
+
+/* Sections */
+
+section{
+    padding:120px 10%;
+}
+
+.section-title{
+    font-size:52px;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.section-text{
+    text-align:center;
+    max-width:850px;
+    margin:auto;
+    color:#b8c1ec;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* Cards */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    margin-top:70px;
+}
+
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:35px;
+    border-radius:24px;
+    backdrop-filter:blur(20px);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#00d4ff;
+    box-shadow:0 0 30px rgba(0,212,255,0.1);
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.card p{
+    color:#b8c1ec;
+    line-height:1.8;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:70px;
+}
+
+.stat{
+    text-align:center;
+    padding:35px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.stat h2{
+    font-size:48px;
+    color:#00d4ff;
+    margin-bottom:10px;
+}
+
+.stat p{
+    color:#b8c1ec;
+}
+
+/* Progress */
+
+.progress-box{
+    max-width:700px;
+    margin:60px auto 0;
+}
+
+.progress-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.progress{
+    width:100%;
+    height:16px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:35%;
+    height:100%;
+    background:linear-gradient(90deg,#00d4ff,#2563eb);
+    border-radius:50px;
+}
+
+/* FAQ */
+
+.faq{
+    margin-top:70px;
+}
+
+.faq-item{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:22px;
+    margin-bottom:20px;
+}
+
+.faq-item h3{
+    margin-bottom:15px;
+}
+
+.faq-item p{
+    color:#b8c1ec;
+    line-height:1.8;
+}
+
+/* Footer */
+
+footer{
+    padding:50px 10%;
+    border-top:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    color:#94a3b8;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.hero h1{
+    font-size:48px;
+}
+
+.section-title{
+    font-size:40px;
+}
+
+nav{
+    display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
+<header>
+
+<div class="logo">Sweden eSIM</div>
+
+<nav>
+<a href="#esim">eSIM</a>
+<a href="#activate">Activate</a>
+<a href="#about">About</a>
+<a href="#faq">FAQ</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+Powered by TON Blockchain
+</div>
+
+<h1>
+Own Your <span class="gradient">Swedish eSIM</span><br>
+on TON Blockchain
+</h1>
+
+<p>
+Exclusive collection of blockchain-powered Swedish eSIM numbers.
+Limited to only 1000 unique digital assets available on GetGems marketplace.
+Future telecom utility, decentralized ownership, and Web3 infrastructure combined into one ecosystem.
+</p>
+
+<div class="buttons">
+
+<a href="https://getgems.io/collection/EQAuQ67VqINohmIujHBR33KuHTPqRjjbmyRQbhNd1t2PMUq9"
+target="_blank"
+class="btn btn-primary">
+Explore on GetGems
+</a>
+
+<a href="https://t.me/Sweden_eSIM"
+target="_blank"
+class="btn btn-secondary">
+Join Telegram
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="esim">
+
+<h2 class="section-title">
+eSIM Collection
+</h2>
+
+<p class="section-text">
+Sweden eSIM is a next-generation Web3 telecom initiative powered by the TON blockchain.
+Our project combines blockchain ownership, decentralized technologies, and future telecom services into one exclusive ecosystem.
+Each Sweden eSIM number is a unique digital asset tradable on GetGems.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<h2>1000</h2>
+<p>Total Collection Supply</p>
+</div>
+
+<div class="stat">
+<h2>TON</h2>
+<p>Blockchain Infrastructure</p>
+</div>
+
+<div class="stat">
+<h2>NFT</h2>
+<p>Digital Ownership</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Marketplace Trading</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>TON Blockchain</h3>
+<p>
+Built on fast and scalable TON blockchain infrastructure with transparent ownership and secure transactions.
+</p>
+</div>
+
+<div class="card">
+<h3>Exclusive Numbers</h3>
+<p>
+Only 1000 Sweden eSIM numbers will ever exist, making the collection rare and valuable.
+</p>
+</div>
+
+<div class="card">
+<h3>Future Utility</h3>
+<p>
+The project roadmap includes future telecom functionality, registration access, and ecosystem utilities.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="activate">
+
+<h2 class="section-title">
+Activate eSIM
+</h2>
+
+<p class="section-text">
+Registration and activation access will become available after 50% of the total collection supply has been sold on GetGems marketplace.
+This milestone unlocks the next development stage of the Sweden eSIM ecosystem.
+</p>
+
+<div class="progress-box">
+
+<div class="progress-title">
+<span>Collection Progress</span>
+<span>35% Sold</span>
+</div>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2 class="section-title">
+About Us
+</h2>
+
+<p class="section-text">
+Sweden eSIM is a blockchain-focused telecom project created for the future generation of digital communication and decentralized ownership.
+Our mission is to build a secure ecosystem where users can own, trade, and eventually activate Swedish eSIM numbers through blockchain technology.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Web3 Infrastructure</h3>
+<p>
+We combine modern blockchain technologies with telecom solutions to create a new decentralized communication ecosystem.
+</p>
+</div>
+
+<div class="card">
+<h3>Community Driven</h3>
+<p>
+The project is focused on long-term development, strong community growth, and future integrations within TON ecosystem.
+</p>
+</div>
+
+<div class="card">
+<h3>Future Vision</h3>
+<p>
+We believe digital identity, telecom services, and decentralized ownership will become essential parts of the Web3 future.
+</p>
+</div>
+
+</div>
+
+<div class="buttons" style="margin-top:60px;">
+
+<a href="https://getgems.io/collection/EQAuQ67VqINohmIujHBR33KuHTPqRjjbmyRQbhNd1t2PMUq9"
+target="_blank"
+class="btn btn-primary">
+GetGems
+</a>
+
+<a href="https://t.me/Sweden_eSIM"
+target="_blank"
+class="btn btn-secondary">
+Telegram
+</a>
+
+</div>
+
+</section>
+
+<section id="faq">
+
+<h2 class="section-title">
+FAQ
+</h2>
+
+<div class="faq">
+
+<div class="faq-item">
+<h3>What is Sweden eSIM?</h3>
+<p>
+Sweden eSIM is a blockchain-powered collection of exclusive Swedish eSIM numbers built on TON blockchain.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Where can I buy eSIM numbers?</h3>
+<p>
+All numbers are available on GetGems marketplace and can be traded as digital assets.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>When will activation become available?</h3>
+<p>
+Activation and registration access will unlock after 50% of the collection supply has been sold.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Why TON blockchain?</h3>
+<p>
+TON provides fast transactions, scalability, decentralization, and secure ownership infrastructure for digital assets.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 Sweden eSIM — Powered by TON Blockchain
+</p>
+
+</footer>
+
+</body>
+</html>
